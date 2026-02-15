@@ -1,15 +1,32 @@
 from __future__ import annotations
+
 import json
 from pathlib import Path
 from typing import Any, Dict
 
-APP_NAME = "LT Trainer (EPFL)"
+# =========================
+# APP IDENTITY
+# =========================
+APP_NAME = "SegLab (EPFL)"
 APP_VERSION = "1.0.1"
 
-# Brand
+# =========================
+# UPDATES (GitHub Releases)
+# =========================
+# The app's "Update" button should read this JSON (raw URL), which then points to the
+# latest GitHub Release assets (mac/win zips). Keep this file in your repo:
+# application/resources/update/latest.json
+UPDATE_FEED_URL = (
+    "https://raw.githubusercontent.com/fredericloboda/SegLab-EPFL/main/"
+    "application/resources/update/latest.json"
+)
+
+# =========================
+# BRAND / THEME
+# =========================
 EPFL_RED = "#e2001a"
 
-# UI palette (dark performance)
+# UI palette (dark)
 BG0 = "#07080b"
 PANEL = "#0f1218"
 BG1 = PANEL  # alias for compatibility
@@ -20,11 +37,14 @@ MUTED = "#9aa3b2"
 BTN = "#141a24"
 BTN_H = "#1a2130"
 
+# =========================
+# PATHS
+# =========================
 APP_ROOT = Path(__file__).resolve().parent
 RESOURCES = APP_ROOT / "resources"
 PUBLIC_MATERIALS_DIR = RESOURCES / "materials_public"
 
-USER_DATA = Path.home() / "LTTrainerEPFL_UserData"
+USER_DATA = Path.home() / "SegLabEPFL_UserData"
 CFG_PATH = USER_DATA / "config.json"
 
 LOCAL_CASES = USER_DATA / "cases_local"
@@ -33,15 +53,22 @@ LOCAL_MATERIALS = USER_DATA / "materials_local"
 LOCAL_PROGRESS = USER_DATA / "progress_local" / "attempts"
 UPDATES_DIR = USER_DATA / "updates"
 
+# =========================
+# DEFAULTS
+# =========================
 DEFAULT_MIN_VOXELS = 10
 DEFAULT_TOLERANCE = 150
 
+# EPFL SMB share (for protected data; must be mounted by OS)
 SMB_URL = "smb://sv-nas1.rcp.epfl.ch/Hummel-Lab"
 
 def ensure_dirs() -> None:
     for p in (USER_DATA, LOCAL_CASES, WORKSPACE, LOCAL_MATERIALS, LOCAL_PROGRESS, UPDATES_DIR):
         p.mkdir(parents=True, exist_ok=True)
 
+# =========================
+# CONFIG
+# =========================
 def cfg_load() -> Dict[str, Any]:
     try:
         if CFG_PATH.exists():
@@ -69,9 +96,9 @@ def cfg_set(k: str, v) -> None:
 # =========================
 # LOCKED POLICY (classroom)
 # =========================
-_LOCKED_POLICY = None  # runtime cache
+_LOCKED_POLICY: dict | None = None  # runtime cache
 
-def set_locked_policy(policy: dict | None):
+def set_locked_policy(policy: dict | None) -> None:
     """Store classroom policy (min_voxels/tolerance/session) when joined to a class."""
     global _LOCKED_POLICY
     _LOCKED_POLICY = policy if isinstance(policy, dict) else None
