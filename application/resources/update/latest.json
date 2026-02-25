@@ -3,7 +3,7 @@
   "latest_version": "1.0.3",
   "mac": {
     "asset_name": "SegLab-mac.zip",
-    "download_url": "https://github.com/fredericloboda/SegLab-EPFL/releases/download/v1.0.3/SegLab-macOS.app.zip"
+    "download_url": "https://github.com/fredericloboda/SegLab-EPFL/releases/download/v1.0.3/SegLab_macOS.app.zip"
   },
   "win": {
     "asset_name": "SegLab_windows_x64.zip",
