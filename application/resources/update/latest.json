@@ -1,7 +1,7 @@
 {
   "repo": "fredericloboda/SegLab-EPFL",
-  "latest_version": "1.0.3",
-  "notes": "SegLab 1.0.3",
+  "latest_version": "1.0.4",
+  "notes": "SegLab 1.0.4 (Windows update). macOS remains at 1.0.3.",
   "mac": {
     "asset_name": "SegLab_macOS.app.zip",
     "download_url": "https://github.com/fredericloboda/SegLab-EPFL/releases/download/v1.0.3/SegLab_macOS.app.zip",
@@ -10,7 +10,7 @@
   },
   "win": {
     "asset_name": "SegLab_windows_x64.zip",
-    "download_url": "https://github.com/fredericloboda/SegLab-EPFL/releases/download/v1.0.3/SegLab_windows_x64.zip",
+    "download_url": "https://github.com/fredericloboda/SegLab-EPFL/releases/download/v1.0.4/SegLab_windows_x64.zip",
     "sha256": "",
     "size_bytes": 0
   }
